@@ -1,7 +1,7 @@
 const PADDING_COLOR = "#5414fc";
 const PADDING_DEFAULT_SPEED = 5;
 const PADDING_DEFAULT_HEIGHT = 15;
-const PADDING_DEFAULT_WIDTH = 80   ;
+const PADDING_DEFAULT_WIDTH = 80;
 const PADDING_DEFAULT_X = 80;
 const PADDING_DEFAULT_Y = 500;
 
@@ -11,7 +11,7 @@ let Padding = function () {
     this.width = PADDING_DEFAULT_WIDTH;
     this.x = PADDING_DEFAULT_X + this.width;
     this.y = PADDING_DEFAULT_Y;
-    this.radiusSide= this.height/2;
+    this.radiusSide = this.height / 2;
     this.speed = PADDING_DEFAULT_SPEED;
     this.isleft = false;
     this.isright = false;
@@ -35,10 +35,18 @@ let Padding = function () {
     this.move = function () {
         this.moveLeft();
         this.moveRight();
-        if (this.x-this.radiusSide < 0) {
-            this.x= this.radiusSide;
-        } else if (this.x > canvas.width - this.width-this.radiusSide) {
-            this.x = canvas.width - this.width-this.radiusSide;
+        if (this.x - this.radiusSide < 0) {
+            this.x = this.radiusSide;
+        } else if (this.x > canvas.width - this.width - this.radiusSide) {
+            this.x = canvas.width - this.width - this.radiusSide;
         }
+        if (ball.y < this.y - 30) this.y = PADDING_DEFAULT_Y;
+        if (ball.y <= this.y) {
+            if (this.y <= (ball.y + ball.radius)
+                && ball.x >= this.x - 2 * this.radiusSide
+                && ball.x <= (this.x + this.width + 2 * this.radiusSide)) {
+                this.y = PADDING_DEFAULT_Y + 10;
+            }
+        }else this.y = PADDING_DEFAULT_Y
     };
 };

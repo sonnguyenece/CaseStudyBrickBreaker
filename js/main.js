@@ -45,7 +45,7 @@ function playGame() {
     padding.draw(ctx);
     padding.move();
     ball.draw(ctx);
-    ball.move(padding);
+    ball.move();
     window.requestAnimationFrame(playGame);
 }
 

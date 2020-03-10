@@ -53,7 +53,11 @@ function Ball() {
         }
     };
 
-
+    this.impact = function () {
+        this.impactBorder();
+        this.impactPadding(padding);
+        // this.impactBrick();
+    };
     this.impactBorder = function () {
         if (this.isUp) {
             if (this.isRight) {
@@ -98,11 +102,7 @@ function Ball() {
 
         }
     };
-    this.impact = function () {
-        this.impactBorder();
-        this.impactPadding(padding);
-        // this.impactBrick();
-    };
+
     this.impactPadding = function (padding) {
         if (this.isUp === false) {
             if (padding.y === (this.y + this.radius)
@@ -135,7 +135,6 @@ function Ball() {
             }
         }
     };
-
 
     this.move = function () {
         if (this.start) {
