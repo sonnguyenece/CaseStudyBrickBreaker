@@ -3,7 +3,7 @@ let BallStats = {
     defaultX: 320,
     defaultY: 520,
     defaultColor: "red",
-    defaultSpeed: 2
+    defaultSpeed: 3
 };
 let BorderBoard = {
     left: 0,
@@ -21,34 +21,35 @@ function Ball() {
     this.start = false;
     this.isUp = true;
     this.isRight = true;
+    this.angle = 70;
     this.draw = function () {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
     };
     this.moveUpRight = function () {
         if (this.isUp && this.isRight) {
             this.x += this.speed;
-            this.y -= 2 * this.speed;
+            this.y -= (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
     this.upLeft = false;
     this.moveUpLeft = function () {
         if (this.isUp && this.isRight === false) {
             this.x -= this.speed;
-            this.y -= 2 * this.speed;
+            this.y -= (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
     this.downRight = false;
     this.moveDownRight = function () {
         if (this.isRight && this.isUp === false) {
             this.x += this.speed;
-            this.y += 2 * this.speed;
+            this.y += (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
     this.downLeft = false;
     this.moveDownLeft = function () {
         if (this.isUp === false && this.isRight === false) {
             this.x -= this.speed;
-            this.y += 2 * this.speed;
+            this.y += (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
 
@@ -97,24 +98,44 @@ function Ball() {
 
         }
     };
-    this.impactPadding = function (padding) {
-        if (this.isUp === false) {
-            if (padding.y === (this.y + this.radius)
-                && (this.x + this.radius) >= (padding.x - padding.radiusSide)
-                && (this.x + this.radius) <= (padding.x + padding.radiusSide + padding.width)) {
-                this.isUp = true;
-                if (this.right) this.right = false;
-                else this.right = true;
-            }
-        }
-    };
-
-
     this.impact = function () {
         this.impactBorder();
         this.impactPadding(padding);
         // this.impactBrick();
     };
+    this.impactPadding = function (padding) {
+        if (this.isUp === false) {
+            if (padding.y === (this.y + this.radius)
+                && this.x >= padding.x - 2 * padding.radiusSide
+                && this.x <= (padding.x + padding.width + 2 * padding.radiusSide)) {
+                if (this.x <= padding.x) {
+                    if (this.isRight) {
+                        this.isRight = false;
+                        this.angle -= 20;
+                    } else {
+                        this.angle -= 10;
+                    }
+                    this.speed += 2;
+                }
+                if (this.x >= padding.x + padding.width) {
+                    if (this.isRight) {
+                        this.angle -= 10;
+                    } else {
+                        this.isRight = true;
+                        this.angle -= 20;
+                    }
+                    this.speed += 2;
+                }
+
+                if (this.angle <= 10) {
+                    this.angle = 70;
+                    this.speed=BallStats.defaultSpeed;
+                }
+                this.isUp = true;
+            }
+        }
+    };
+
 
     this.move = function () {
         if (this.start) {

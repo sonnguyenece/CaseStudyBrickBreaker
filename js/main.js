@@ -42,7 +42,6 @@ document.addEventListener('keydown', onKeydown);
 
 function playGame() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
     padding.draw(ctx);
     padding.move();
     ball.draw(ctx);
