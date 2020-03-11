@@ -6,7 +6,15 @@ let brickStats = {
     defaultBrickY: 20,
     defaultBrickX: 0
 };
-let arrBrick = create2DArray(4);
+// let brickStats = {
+//     defaultWidth: 100,
+//     defaultHeight: 200,
+//     rowBrick: 1,
+//     colBrick: 1,
+//     defaultBrickY: 0,
+//     defaultBrickX:110
+// };
+let arrBrick = create2DArray(brickStats.rowBrick);
 let j = 0;
 let i = 0;
 
@@ -32,14 +40,13 @@ function Bricks() {
     this.draw = function (ctx) {
         for (i = 0; i < brickStats.rowBrick; i++) {
             for (j = 0; j < brickStats.colBrick; j++) {
-
-                console.log(arrBrick[i][j]);
-                console.log(arrBrick[i][j]);
                 drawBrickRec(ctx, arrBrick[i][j].x, arrBrick[i][j].y,
                     arrBrick[i][j].width, arrBrick[i][j].height, arrBrick[i][j].color)
             }
         }
-    }
+    };
+    this.impactBall=false;
+
 }
 
 function Brick() {
@@ -61,14 +68,14 @@ function randomColorBrick() {
     }
 }
 
-function randomYBrick() {
-    let temp = Math.floor(Math.random() * 2);
-    if (temp === 0) {
-        return brickStats.defaultHeight;
-    } else {
-        return brickStats.defaultHeight / 2;
-    }
-}
+// function randomYBrick() {
+//     let temp = Math.floor(Math.random() * 2);
+//     if (temp === 0) {
+//         return brickStats.defaultHeight;
+//     } else {
+//         return brickStats.defaultHeight / 2;
+//     }
+// }
 
 function randomWidthBrick() {
     let temp = Math.floor(Math.random() * 2);
@@ -96,7 +103,6 @@ function create2DArray(rows) {
     return arr;
 }
 
-
 function creatRandomBricks() {
     for (i = 0; i < brickStats.rowBrick; i++) {
         for (let j = 0; j < brickStats.colBrick; j++) {
@@ -114,6 +120,5 @@ function creatBrick() {
     brick.color = randomColorBrick();
     return brick
 }
-
 
 creatRandomBricks();

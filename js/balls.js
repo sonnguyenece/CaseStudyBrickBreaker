@@ -3,7 +3,7 @@ let ballStats = {
     defaultX: 320,
     defaultY: 520,
     defaultColor: "red",
-    defaultSpeed: 3
+    defaultSpeed: 2
 };
 let BorderBoard = {
     left: 0,
@@ -22,6 +22,9 @@ function Ball() {
     this.isUp = true;
     this.isRight = true;
     this.angle = 70;
+    this.restart=function () {
+
+    };
     this.draw = function () {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
     };
@@ -56,7 +59,7 @@ function Ball() {
     this.impact = function () {
         this.impactBorder();
         this.impactPadding(padding);
-        // this.impactBrick();
+        this.impactBricks();
     };
     this.impactBorder = function () {
         if (this.isUp) {
@@ -105,7 +108,8 @@ function Ball() {
 
     this.impactPadding = function (padding) {
         if (this.isUp === false) {
-            if (padding.y <= (this.y + this.radius) && padding.y >= this.y
+            if (padding.y <= (this.y + this.radius)
+                && padding.y >= this.y
                 && this.x >= padding.x - 2 * padding.radiusSide
                 && this.x <= (padding.x + padding.width + 2 * padding.radiusSide)) {
                 if (this.x <= padding.x) {
@@ -136,6 +140,18 @@ function Ball() {
         }
     };
 
+    this.impactBricks = function () {
+        for (i = 0; i < brickStats.rowBrick; i++) {
+            for (j = 0; j < brickStats.colBrick; j++) {
+                impactBrick(arrBrick[i][j]);
+                if(this.isImpactBrick){
+                    arrBrick[i][j]='';
+                    this.isImpactBrick=false;
+                }
+            }
+        }
+    };
+
     this.move = function () {
         if (this.start) {
             this.moveUpRight();
@@ -149,4 +165,43 @@ function Ball() {
             this.y = padding.y - this.radius;
         }
     }
+}
+
+function impactBrick(arr) {
+    if (ball.x + ball.radius >= arr.x
+        && ball.x + ball.radius <= arr.x + arr.width) {
+        if (ball.y + ball.radius <= arr.y + arr.height
+            && ball.y + ball.radius >= arr.y) {
+            ball.isImpactBrick=true;
+            impactTopBot();
+
+        }
+        if (ball.y - ball.radius <= arr.y + arr.height
+            && ball.y - ball.radius >= arr.y) {
+            ball.isImpactBrick=true;
+            impactTopBot();
+        }
+    }
+    if (ball.y >= arr.y && ball.y <= arr.y+arr.height) {
+        if (ball.x + ball.radius < arr.x + arr.width
+            && ball.x + ball.radius >= arr.x) {
+            ball.isImpactBrick=true;
+            impactSide();
+        }
+        if (ball.x - ball.radius <= arr.x + arr.width
+            && ball.x - ball.radius > arr.x) {
+            ball.isImpactBrick=true;
+            impactSide();
+        }
+    }
+}
+
+function impactTopBot() {
+    if (ball.isUp) ball.isUp = false;
+    else ball.isUp = true;
+}
+
+function impactSide() {
+    if (ball.isRight) ball.isRight = false;
+    else ball.isRight = true;
 }
