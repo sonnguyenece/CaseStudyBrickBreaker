@@ -105,31 +105,31 @@ function Ball() {
 
     this.impactPadding = function (padding) {
         if (this.isUp === false) {
-            if (padding.y === (this.y + this.radius)
+            if (padding.y <= (this.y + this.radius) && padding.y >= this.y
                 && this.x >= padding.x - 2 * padding.radiusSide
                 && this.x <= (padding.x + padding.width + 2 * padding.radiusSide)) {
                 if (this.x <= padding.x) {
                     if (this.isRight) {
                         this.isRight = false;
-                        this.angle -= 20;
+                        this.angle -= 15;
                     } else {
-                        this.angle -= 6;
+                        this.angle -= 10;
                     }
-                    this.speed += 2;
+                    this.speed += 3;
                 }
                 if (this.x >= padding.x + padding.width) {
                     if (this.isRight) {
-                        this.angle -= 6;
+                        this.angle -= 10;
                     } else {
                         this.isRight = true;
-                        this.angle -= 20;
+                        this.angle -= 15;
                     }
-                    this.speed += 2;
+                    this.speed += 3;
                 }
 
-                if (this.angle < 8) {
-                    this.angle = 70;
-                    this.speed=ballStats.defaultSpeed;
+                if (this.angle < 10) {
+                    this.angle = 80;
+                    this.speed = ballStats.defaultSpeed;
                 }
                 this.isUp = true;
             }
