@@ -59,6 +59,8 @@ function Brick() {
 
 function randomColorBrick() {
     let temp = Math.floor(Math.random() * 3);
+    let randomLockBrick=Math.floor(Math.random()*20);
+    if (randomLockBrick===10) return "black";
     if (temp === 0) {
         return "#3CFF0B"
     } else if (temp === 1) {
