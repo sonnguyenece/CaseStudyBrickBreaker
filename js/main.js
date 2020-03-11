@@ -48,6 +48,7 @@ function playGame() {
     ball.draw(ctx);
     ball.move();
     bricks.draw(ctx);
+    ball.restart();
     window.requestAnimationFrame(playGame);
 }
 

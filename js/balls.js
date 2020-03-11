@@ -3,7 +3,8 @@ let ballStats = {
     defaultX: 320,
     defaultY: 520,
     defaultColor: "red",
-    defaultSpeed: 2
+    defaultSpeed: 2,
+    defaultAngle:60
 };
 let BorderBoard = {
     left: 0,
@@ -22,9 +23,7 @@ function Ball() {
     this.isUp = true;
     this.isRight = true;
     this.angle = 70;
-    this.restart=function () {
 
-    };
     this.draw = function () {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
     };
@@ -144,9 +143,9 @@ function Ball() {
         for (i = 0; i < brickStats.rowBrick; i++) {
             for (j = 0; j < brickStats.colBrick; j++) {
                 impactBrick(arrBrick[i][j]);
-                if(this.isImpactBrick){
-                    arrBrick[i][j]='';
-                    this.isImpactBrick=false;
+                if (this.isImpactBrick) {
+                    arrBrick[i][j] = '';
+                    this.isImpactBrick = false;
                 }
             }
         }
@@ -164,7 +163,14 @@ function Ball() {
             this.x = padding.x + padding.width / 2;
             this.y = padding.y - this.radius;
         }
-    }
+    };
+    this.restart = function () {
+        if (this.y >= canvas.height+100){
+            this.start=false;
+            this.speed=ballStats.defaultSpeed;
+            this.angle=ballStats.defaultAngle;
+        }
+    };
 }
 
 function impactBrick(arr) {
@@ -172,25 +178,25 @@ function impactBrick(arr) {
         && ball.x + ball.radius <= arr.x + arr.width) {
         if (ball.y + ball.radius <= arr.y + arr.height
             && ball.y + ball.radius >= arr.y) {
-            ball.isImpactBrick=true;
+            ball.isImpactBrick = true;
             impactTopBot();
 
         }
         if (ball.y - ball.radius <= arr.y + arr.height
             && ball.y - ball.radius >= arr.y) {
-            ball.isImpactBrick=true;
+            ball.isImpactBrick = true;
             impactTopBot();
         }
     }
-    if (ball.y >= arr.y && ball.y <= arr.y+arr.height) {
+    if (ball.y >= arr.y && ball.y <= arr.y + arr.height) {
         if (ball.x + ball.radius < arr.x + arr.width
             && ball.x + ball.radius >= arr.x) {
-            ball.isImpactBrick=true;
+            ball.isImpactBrick = true;
             impactSide();
         }
         if (ball.x - ball.radius <= arr.x + arr.width
             && ball.x - ball.radius > arr.x) {
-            ball.isImpactBrick=true;
+            ball.isImpactBrick = true;
             impactSide();
         }
     }
