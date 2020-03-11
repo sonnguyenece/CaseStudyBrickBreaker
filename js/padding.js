@@ -1,10 +1,12 @@
 const PADDING_COLOR = "#5414fc";
+const PADDING_SIDE_COLOR="#08ebff"
 const PADDING_DEFAULT_SPEED = 5;
 const PADDING_DEFAULT_HEIGHT = 15;
 const PADDING_DEFAULT_WIDTH = 80;
 const PADDING_DEFAULT_X = 80;
 const PADDING_DEFAULT_Y = 500;
-
+const shadowPointX=4;
+const shadowPointY=5;
 let Padding = function () {
     this.color = PADDING_COLOR;
     this.height = PADDING_DEFAULT_HEIGHT;
@@ -16,12 +18,7 @@ let Padding = function () {
     this.isleft = false;
     this.isright = false;
     this.draw = function (ctx) {
-        drawRec(ctx, this.x, this.y, this.width,
-            this.height, PADDING_COLOR)
-        + drawCir(ctx, this.x, this.y + this.radiusSide,
-            this.radiusSide, PADDING_COLOR, false);
-        +drawCir(ctx, this.x + this.width, this.y + this.radiusSide,
-            this.radiusSide, PADDING_COLOR, false);
+        drawPadding(ctx,padding,PADDING_COLOR);
     };
     this.moveLeft = function () {
         if (this.isleft) this.x -= this.speed;
@@ -50,3 +47,12 @@ let Padding = function () {
         }else this.y = PADDING_DEFAULT_Y
     };
 };
+
+function drawPadding(ctx,padding,PADDING_COLOR) {
+    drawArc(ctx, padding.x, padding.y + padding.radiusSide,
+        padding.radiusSide, PADDING_SIDE_COLOR,Math.PI*0.5,Math.PI*1.5);
+    +drawRec(ctx, padding.x, padding.y, padding.width,
+        padding.height, PADDING_COLOR)
+    +drawArc(ctx, padding.x + padding.width, padding.y + padding.radiusSide,
+        padding.radiusSide, PADDING_SIDE_COLOR,-Math.PI*0.5,Math.PI*0.5);
+}

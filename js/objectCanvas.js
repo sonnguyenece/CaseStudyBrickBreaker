@@ -13,3 +13,13 @@ function drawCir(ctx, x, y, radius, color, clockwise) {
     ctx.fill();
     ctx.closePath();
 }
+
+function drawArc(ctx, x, y, radius, color, startAngle,endAngle) {
+    ctx.beginPath();
+    ctx.arc(x, y, radius, startAngle, endAngle);
+    ctx.fillStyle = color;
+    ctx.fill();
+    ctx.closePath();
+}
+
+

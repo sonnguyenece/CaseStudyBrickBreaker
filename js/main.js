@@ -7,6 +7,7 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 let padding = new Padding();
 let ball = new Ball();
+let bricks =new Bricks();
 
 function onKeyup(event) {
     switch (event.which) {
@@ -46,6 +47,7 @@ function playGame() {
     padding.move();
     ball.draw(ctx);
     ball.move();
+    bricks.draw(ctx);
     window.requestAnimationFrame(playGame);
 }
 

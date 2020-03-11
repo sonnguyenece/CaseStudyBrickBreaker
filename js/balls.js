@@ -1,4 +1,4 @@
-let BallStats = {
+let ballStats = {
     defaultRadius: 10,
     defaultX: 320,
     defaultY: 520,
@@ -13,11 +13,11 @@ let BorderBoard = {
 };
 
 function Ball() {
-    this.x = BallStats.defaultX;
-    this.y = BallStats.defaultY;
-    this.radius = BallStats.defaultRadius;
-    this.color = BallStats.defaultColor;
-    this.speed = BallStats.defaultSpeed;
+    this.x = ballStats.defaultX;
+    this.y = ballStats.defaultY;
+    this.radius = ballStats.defaultRadius;
+    this.color = ballStats.defaultColor;
+    this.speed = ballStats.defaultSpeed;
     this.start = false;
     this.isUp = true;
     this.isRight = true;
@@ -113,13 +113,13 @@ function Ball() {
                         this.isRight = false;
                         this.angle -= 20;
                     } else {
-                        this.angle -= 10;
+                        this.angle -= 6;
                     }
                     this.speed += 2;
                 }
                 if (this.x >= padding.x + padding.width) {
                     if (this.isRight) {
-                        this.angle -= 10;
+                        this.angle -= 6;
                     } else {
                         this.isRight = true;
                         this.angle -= 20;
@@ -127,9 +127,9 @@ function Ball() {
                     this.speed += 2;
                 }
 
-                if (this.angle <= 10) {
+                if (this.angle < 8) {
                     this.angle = 70;
-                    this.speed=BallStats.defaultSpeed;
+                    this.speed=ballStats.defaultSpeed;
                 }
                 this.isUp = true;
             }
