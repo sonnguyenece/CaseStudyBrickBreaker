@@ -110,8 +110,8 @@ function Ball() {
         if (this.isUp === false) {
             if (padding.y <= (this.y + this.radius)
                 && padding.y >= this.y
-                && this.x >= padding.x - 2 * padding.radiusSide
-                && this.x <= (padding.x + padding.width + 2 * padding.radiusSide)) {
+                && this.x >= padding.x - padding.radiusSide - this.radius
+                && this.x <= (padding.x + padding.width + padding.radiusSide +this.radius)) {
                 if (this.x <= padding.x) {
                     if (this.isRight) {
                         this.isRight = false;
