@@ -68,15 +68,6 @@ function randomColorBrick() {
     }
 }
 
-// function randomYBrick() {
-//     let temp = Math.floor(Math.random() * 2);
-//     if (temp === 0) {
-//         return brickStats.defaultHeight;
-//     } else {
-//         return brickStats.defaultHeight / 2;
-//     }
-// }
-
 function randomWidthBrick() {
     let temp = Math.floor(Math.random() * 2);
     if (temp === 0) {

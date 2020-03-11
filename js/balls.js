@@ -4,7 +4,7 @@ let ballStats = {
     defaultY: 520,
     defaultColor: "red",
     defaultSpeed: 2,
-    defaultAngle:60
+    defaultAngle: 70
 };
 let BorderBoard = {
     left: 0,
@@ -22,7 +22,7 @@ function Ball() {
     this.start = false;
     this.isUp = true;
     this.isRight = true;
-    this.angle = 70;
+    this.angle = ballStats.defaultAngle;
 
     this.draw = function () {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
@@ -118,7 +118,7 @@ function Ball() {
                     } else {
                         this.angle -= 10;
                     }
-                    this.speed += 3;
+                    this.speed += 2;
                 }
                 if (this.x >= padding.x + padding.width) {
                     if (this.isRight) {
@@ -127,7 +127,7 @@ function Ball() {
                         this.isRight = true;
                         this.angle -= 15;
                     }
-                    this.speed += 3;
+                    this.speed += 2;
                 }
 
                 if (this.angle < 10) {
@@ -144,7 +144,17 @@ function Ball() {
             for (j = 0; j < brickStats.colBrick; j++) {
                 impactBrick(arrBrick[i][j]);
                 if (this.isImpactBrick) {
-                    arrBrick[i][j] = '';
+                    switch (arrBrick[i][j].color) {
+                        case "#ff0097":
+                            arrBrick[i][j].color = "#0207ff";
+                            break;
+                        case "#0207ff":
+                            arrBrick[i][j].color = "#3CFF0B";
+                            break;
+                        case "#3CFF0B":
+                            arrBrick[i][j] = '';
+                            break;
+                    }
                     this.isImpactBrick = false;
                 }
             }
@@ -165,10 +175,10 @@ function Ball() {
         }
     };
     this.restart = function () {
-        if (this.y >= canvas.height+100){
-            this.start=false;
-            this.speed=ballStats.defaultSpeed;
-            this.angle=ballStats.defaultAngle;
+        if (this.y >= canvas.height + 100) {
+            this.start = false;
+            this.speed = ballStats.defaultSpeed;
+            this.angle = ballStats.defaultAngle;
         }
     };
 }
@@ -179,35 +189,40 @@ function impactBrick(arr) {
         if (ball.y + ball.radius <= arr.y + arr.height
             && ball.y + ball.radius >= arr.y) {
             ball.isImpactBrick = true;
-            impactTopBot();
-
+            impactTop();
         }
         if (ball.y - ball.radius <= arr.y + arr.height
-            && ball.y - ball.radius >= arr.y) {
+            && ball.y - ball.radius > arr.y) {
             ball.isImpactBrick = true;
-            impactTopBot();
+            impactBot();
         }
     }
     if (ball.y >= arr.y && ball.y <= arr.y + arr.height) {
         if (ball.x + ball.radius < arr.x + arr.width
             && ball.x + ball.radius >= arr.x) {
             ball.isImpactBrick = true;
-            impactSide();
+            impactLeftSide();
         }
         if (ball.x - ball.radius <= arr.x + arr.width
             && ball.x - ball.radius > arr.x) {
             ball.isImpactBrick = true;
-            impactSide();
+            impactRightSide();
         }
     }
 }
 
-function impactTopBot() {
-    if (ball.isUp) ball.isUp = false;
-    else ball.isUp = true;
+function impactTop() {
+    if (ball.isUp === false) ball.isUp = true;
 }
 
-function impactSide() {
+function impactBot() {
+    if (ball.isUp) ball.isUp = false;
+}
+
+function impactLeftSide() {
     if (ball.isRight) ball.isRight = false;
-    else ball.isRight = true;
+}
+
+function impactRightSide() {
+    if (ball.isRight === false) ball.isRight = true;
 }
