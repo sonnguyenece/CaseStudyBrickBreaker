@@ -1,5 +1,5 @@
 const PADDING_COLOR = "#5414fc";
-const PADDING_SIDE_COLOR = "#08ebff"
+const PADDING_SIDE_COLOR = "#08ebff";
 const PADDING_DEFAULT_SPEED = 5;
 const PADDING_DEFAULT_HEIGHT = 15;
 const PADDING_DEFAULT_WIDTH = 80;
@@ -38,13 +38,13 @@ let Padding = function () {
             this.x = canvas.width - this.width - this.radiusSide;
         }
         if (ball.y < this.y - 50) this.y = PADDING_DEFAULT_Y;
-        if (ball.y >= this.y - ball.radius && ball.y < this.y - ball.radius + ballStats.maxSpeed) {
+        if (ball.y >= this.y - ball.radius
+            && ball.y < this.y - ball.radius + ballStats.limitedSpace) {
             if (ball.x >= this.x - this.radiusSide - ball.radius
-                && ball.x <= (this.x + this.width + this.radiusSide +ball.radius)) {
+                && ball.x <= (this.x + this.width + this.radiusSide + ball.radius)) {
                 this.y = PADDING_DEFAULT_Y + 10;
             }
         }
-        // else this.y = PADDING_DEFAULT_Y
     };
 };
 

@@ -4,16 +4,12 @@ let brickStats = {
     rowBrick: 4,
     colBrick: 10,
     defaultBrickY: 20,
-    defaultBrickX: 0
+    defaultBrickX: 0,
+    greenBrick:"#3CFF0B",
+    blueBrick: "#0207ff",
+    redBrick:"#ff0097",
+
 };
-// let brickStats = {
-//     defaultWidth: 100,
-//     defaultHeight: 200,
-//     rowBrick: 1,
-//     colBrick: 1,
-//     defaultBrickY: 0,
-//     defaultBrickX:110
-// };
 let arrBrick = create2DArray(brickStats.rowBrick);
 let j = 0;
 let i = 0;
@@ -21,10 +17,9 @@ let i = 0;
 function drawBrickRec(ctx, x, y, width, height, color) {
     ctx.beginPath();
     ctx.clearRect(x, y, width, height);
-    ctx.rect(x, y, width, height);
     ctx.fillStyle = color;
-    ctx.fill();
-    ctx.shadowColor = "rgba(0,0,0,0.81)";
+    ctx.fillRect(x, y, width, height);
+    ctx.shadowColor = "rgba(0,0,0,0.82)";
     ctx.shadowOffsetX = shadowPointX;
     ctx.shadowOffsetY = shadowPointY;
     ctx.shadowBlur = 3;
@@ -36,7 +31,6 @@ function Bricks() {
     this.height = brickStats.defaultHeight;
     this.x = brickStats.defaultBrickX;
     this.y = brickStats.defaultBrickY;
-    // this.color;
     this.draw = function (ctx) {
         for (i = 0; i < brickStats.rowBrick; i++) {
             for (j = 0; j < brickStats.colBrick; j++) {
@@ -46,7 +40,6 @@ function Bricks() {
         }
     };
     this.impactBall=false;
-
 }
 
 function Brick() {
@@ -54,7 +47,7 @@ function Brick() {
     this.height = brickStats.defaultHeight;
     this.x = brickStats.defaultBrickX;
     this.y = brickStats.defaultBrickY;
-    this.color = '#3CFF0B';
+    this.color = brickStats.redBrick;
 }
 
 function randomColorBrick() {
@@ -62,9 +55,9 @@ function randomColorBrick() {
     let randomLockBrick=Math.floor(Math.random()*20);
     if (randomLockBrick===10) return "black";
     if (temp === 0) {
-        return "#3CFF0B"
+        return brickStats.greenBrick
     } else if (temp === 1) {
-        return "#0207ff"
+        return brickStats.blueBrick
     } else {
         return "#ff0097"
     }
@@ -111,6 +104,7 @@ function creatBrick() {
     brick.width = randomWidthBrick();
     brick.height = randomHeightBrick();
     brick.color = randomColorBrick();
+
     return brick
 }
 

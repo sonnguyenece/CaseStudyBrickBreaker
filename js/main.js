@@ -7,7 +7,9 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 let padding = new Padding();
 let ball = new Ball();
-let bricks =new Bricks();
+let bricks = new Bricks();
+let noticeBoard = new NoticeBoard();
+let gameStart = false;
 
 function onKeyup(event) {
     switch (event.which) {
@@ -31,7 +33,7 @@ function onKeydown(event) {
             padding.isright = true;
             break;
         case PARAMETERKEYBOARD.SPACE:
-            ball.start=true;
+            ball.start = true;
             break;
         default:
             break;
@@ -42,13 +44,19 @@ document.addEventListener('keyup', onKeyup);
 document.addEventListener('keydown', onKeydown);
 
 function playGame() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    padding.draw(ctx);
-    padding.move();
-    ball.draw(ctx);
-    ball.move();
-    bricks.draw(ctx);
-    ball.restart();
+    if (gameStart) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        padding.draw(ctx);
+        padding.move();
+        ball.draw(ctx);
+        ball.move();
+        bricks.draw(ctx);
+        ball.restart();
+    } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        noticeBoard.draw(ctx);
+        noticeBoard.action();
+    }
     window.requestAnimationFrame(playGame);
 }
 

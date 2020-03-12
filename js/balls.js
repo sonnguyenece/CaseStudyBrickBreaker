@@ -5,7 +5,7 @@ let ballStats = {
     defaultColor: "red",
     defaultSpeed: 2,
     defaultAngle: 70,
-    maxSpeed: 10
+    limitedSpace: 10
 };
 let BorderBoard = {
     left: 0,
@@ -133,7 +133,7 @@ function Ball() {
 
                 if (this.angle < 10) {
                     this.angle = 80;
-                    this.speed = ballStats.defaultSpeed;
+                    this.speed = ballStats.defaultSpeed/2;
                 }
                 this.isUp = true;
             }
@@ -146,13 +146,13 @@ function Ball() {
                 impactBrick(arrBrick[i][j]);
                 if (this.isImpactBrick) {
                     switch (arrBrick[i][j].color) {
-                        case "#ff0097":
-                            arrBrick[i][j].color = "#0207ff";
+                        case brickStats.redBrick:
+                            arrBrick[i][j].color = brickStats.blueBrick;
                             break;
-                        case "#0207ff":
-                            arrBrick[i][j].color = "#3CFF0B";
+                        case brickStats.blueBrick:
+                            arrBrick[i][j].color = brickStats.greenBrick;
                             break;
-                        case "#3CFF0B":
+                        case brickStats.greenBrick:
                             arrBrick[i][j] = '';
                             break;
                     }
@@ -187,25 +187,25 @@ function Ball() {
 function impactBrick(arr) {
     if (ball.x > arr.x - ball.radius
         && ball.x < arr.x + arr.width + ball.radius) {
-        if (ball.y < arr.y - ball.radius + ballStats.maxSpeed
+        if (ball.y < arr.y - ball.radius + ballStats.limitedSpace
             && ball.y >= arr.y - ball.radius) {
             ball.isImpactBrick = true;
             if (ball.isUp === false) ball.isUp = true;
         }
         if (ball.y <= arr.y + arr.height + ball.radius
-            && ball.y > arr.y + ball.radius + arr.height - ballStats.maxSpeed) {
+            && ball.y > arr.y + ball.radius + arr.height - ballStats.limitedSpace) {
             ball.isImpactBrick = true;
             if (ball.isUp) ball.isUp = false;
         }
     }
     if (ball.y > arr.y - ball.radius && ball.y < arr.y + arr.height + ball.radius) {
-        if (ball.x < arr.x - ball.radius + ballStats.maxSpeed
+        if (ball.x < arr.x - ball.radius + ballStats.limitedSpace
             && ball.x >= arr.x - ball.radius) {
             ball.isImpactBrick = true;
             if (ball.isRight) ball.isRight = false;
         }
         if (ball.x <= arr.x + arr.width + ball.radius
-            && ball.x > arr.x + arr.width+ ball.radius - ballStats.maxSpeed) {
+            && ball.x > arr.x + arr.width+ ball.radius - ballStats.limitedSpace) {
             ball.isImpactBrick = true;
             if (ball.isRight === false) ball.isRight = true;
         }
