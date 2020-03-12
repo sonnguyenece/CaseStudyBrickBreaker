@@ -1,10 +1,11 @@
-let boardStt = {
+let boardStats = {
     width: 250,
     height: 200,
     color: "#ffc247",
     x: 80,
     y: 160,
 };
+
 let button = {
     color: "rgba(42,0,214,0.91)",
     startX: 140,
@@ -19,7 +20,7 @@ let button = {
 function NoticeBoard() {
 
     this.draw = function (ctx) {
-        drawRecAndShadow(ctx, boardStt.x, boardStt.y, boardStt.width, boardStt.height, boardStt.color);
+        drawRecAndShadow(ctx, boardStats.x, boardStats.y, boardStats.width, boardStats.height, boardStats.color);
         if (button.pressStart) {
             drawPlayPress(ctx);
         } else {
@@ -47,8 +48,8 @@ function NoticeBoard() {
             && NoticeBoard.y <= button.y + button.height) {
             button.pressStart = true;
             setTimeout(function () {
-                gameStart=true;
-            },500);
+                gameStart = true;
+            }, 500);
         } else {
             button.pressStart = false;
         }
@@ -65,6 +66,7 @@ function NoticeBoard() {
 
 }
 
+/*Auxiliary Function*/
 function drawPlayButton(ctx) {
     drawRecAndShadow(ctx, button.startX, button.y, button.width,
         button.height, button.color);
@@ -76,7 +78,6 @@ function drawPlayPress(ctx) {
         button.height, button.color);
     drawTriangle(ctx, 155, 245, 155, 215, 185, 230, "rgb(157,255,102)")
 }
-
 
 function drawReplayButton(ctx) {
     drawRecAndShadow(ctx, button.restartX, button.y, button.width,
@@ -93,8 +94,8 @@ function drawReplayPress(ctx) {
 }
 
 function drawButtonPress(ctx, x, y, width, height, color) {
-    ctx.shadowOffsetX=0;
-    ctx.shadowOffsetY=0;
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
     ctx.beginPath();
     ctx.rect(x, y, width, height);
     ctx.fillStyle = color;

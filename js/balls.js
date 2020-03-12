@@ -7,6 +7,7 @@ let ballStats = {
     defaultAngle: 70,
     limitedSpace: 10
 };
+
 let BorderBoard = {
     left: 0,
     right: 400,
@@ -28,27 +29,28 @@ function Ball() {
     this.draw = function () {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
     };
+
     this.moveUpRight = function () {
         if (this.isUp && this.isRight) {
             this.x += this.speed;
             this.y -= (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
-    this.upLeft = false;
+
     this.moveUpLeft = function () {
         if (this.isUp && this.isRight === false) {
             this.x -= this.speed;
             this.y -= (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
-    this.downRight = false;
+
     this.moveDownRight = function () {
         if (this.isRight && this.isUp === false) {
             this.x += this.speed;
             this.y += (Math.tan(Math.PI * this.angle / 180)).toFixed(1) * this.speed;
         }
     };
-    this.downLeft = false;
+
     this.moveDownLeft = function () {
         if (this.isUp === false && this.isRight === false) {
             this.x -= this.speed;
@@ -61,6 +63,7 @@ function Ball() {
         this.impactPadding(padding);
         this.impactBricks();
     };
+
     this.impactBorder = function () {
         if (this.isUp) {
             if (this.isRight) {
@@ -111,7 +114,7 @@ function Ball() {
             if (padding.y <= (this.y + this.radius)
                 && padding.y >= this.y
                 && this.x >= padding.x - padding.radiusSide - this.radius
-                && this.x <= (padding.x + padding.width + padding.radiusSide +this.radius)) {
+                && this.x <= (padding.x + padding.width + padding.radiusSide + this.radius)) {
                 if (this.x <= padding.x) {
                     if (this.isRight) {
                         this.isRight = false;
@@ -133,7 +136,7 @@ function Ball() {
 
                 if (this.angle < 10) {
                     this.angle = 80;
-                    this.speed = ballStats.defaultSpeed/2;
+                    this.speed = ballStats.defaultSpeed / 2;
                 }
                 this.isUp = true;
             }
@@ -143,7 +146,9 @@ function Ball() {
     this.impactBricks = function () {
         for (i = 0; i < brickStats.rowBrick; i++) {
             for (j = 0; j < brickStats.colBrick; j++) {
-                impactBrick(arrBrick[i][j]);
+                if (brickWall.isChange === false) {
+                    impactBrick(arrBrick[i][j]);
+                }
                 if (this.isImpactBrick) {
                     switch (arrBrick[i][j].color) {
                         case brickStats.redBrick:
@@ -154,6 +159,11 @@ function Ball() {
                             break;
                         case brickStats.greenBrick:
                             arrBrick[i][j] = '';
+                            break;
+                        case brickStats.lockBrickColor:
+                            break;
+                        default:
+                            brickWall.isChange = true;
                             break;
                     }
                     this.isImpactBrick = false;
@@ -175,6 +185,7 @@ function Ball() {
             this.y = padding.y - this.radius;
         }
     };
+
     this.restart = function () {
         if (this.y >= canvas.height + 100) {
             this.start = false;
@@ -184,6 +195,7 @@ function Ball() {
     };
 }
 
+/*Auxiliary Function*/
 function impactBrick(arr) {
     if (ball.x > arr.x - ball.radius
         && ball.x < arr.x + arr.width + ball.radius) {
@@ -205,7 +217,7 @@ function impactBrick(arr) {
             if (ball.isRight) ball.isRight = false;
         }
         if (ball.x <= arr.x + arr.width + ball.radius
-            && ball.x > arr.x + arr.width+ ball.radius - ballStats.limitedSpace) {
+            && ball.x > arr.x + arr.width + ball.radius - ballStats.limitedSpace) {
             ball.isImpactBrick = true;
             if (ball.isRight === false) ball.isRight = true;
         }

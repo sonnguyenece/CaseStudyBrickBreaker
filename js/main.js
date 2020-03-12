@@ -7,7 +7,7 @@ let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
 let padding = new Padding();
 let ball = new Ball();
-let bricks = new Bricks();
+let brickWall = new BrickWall();
 let noticeBoard = new NoticeBoard();
 let gameStart = false;
 
@@ -50,14 +50,18 @@ function playGame() {
         padding.move();
         ball.draw(ctx);
         ball.move();
-        bricks.draw(ctx);
-        ball.restart();
-    } else {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        noticeBoard.draw(ctx);
-        noticeBoard.action();
+        if (brickWall.isChange) {
+            creatRandomBricks();
+            brickWall.isChange=false;
+        }
+            brickWall.draw(ctx);
+            ball.restart();
+        } else {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            noticeBoard.draw(ctx);
+            noticeBoard.action();
+        }
+        window.requestAnimationFrame(playGame);
     }
-    window.requestAnimationFrame(playGame);
-}
 
-playGame();
+    playGame();

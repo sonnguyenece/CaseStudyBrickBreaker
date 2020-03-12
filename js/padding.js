@@ -7,7 +7,7 @@ const PADDING_DEFAULT_X = 80;
 const PADDING_DEFAULT_Y = 500;
 const shadowPointX = 4;
 const shadowPointY = 5;
-let Padding = function () {
+function Padding() {
     this.color = PADDING_COLOR;
     this.height = PADDING_DEFAULT_HEIGHT;
     this.width = PADDING_DEFAULT_WIDTH;
@@ -51,8 +51,7 @@ let Padding = function () {
 function drawPadding(ctx, padding, PADDING_COLOR) {
     drawArc(ctx, padding.x, padding.y + padding.radiusSide,
         padding.radiusSide, PADDING_SIDE_COLOR, Math.PI * 0.5, Math.PI * 1.5);
-    +drawRec(ctx, padding.x, padding.y, padding.width,
-        padding.height, PADDING_COLOR)
+    +drawRec(ctx, padding.x, padding.y, padding.width, padding.height, PADDING_COLOR)
     + drawArc(ctx, padding.x + padding.width, padding.y + padding.radiusSide,
         padding.radiusSide, PADDING_SIDE_COLOR, -Math.PI * 0.5, Math.PI * 0.5);
 }
