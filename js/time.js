@@ -1,4 +1,5 @@
-const timeReverseDefault = 60;
+const timeReverseDefault = 100;
+const timeSurvivalStart=0;
 const penaltyTime = 20;
 const bonusTime = 30;
 let isSaveSurTime = false;

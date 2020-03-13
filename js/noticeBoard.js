@@ -105,8 +105,8 @@ function restartGame() {
     isFirstStart = true;
     isGameOver=false;
     Temp.survivalTime = 0;
-    time.survival = 0;
-    time.reverse = 60;
+    time.survival = timeSurvivalStart;
+    time.reverse = timeReverseDefault ;
     isPause = false;
     changeBrickWall();
     ball.x = padding.x + padding.width / 2;
@@ -120,12 +120,12 @@ function playPauseGame() {
         isPause = false;
     } else if (isFirstStart) {
         gameStart = true;
-        if (Temp.survivalTime !== 0) {
+        if (Temp.survivalTime !== timeSurvivalStart) {
             time.survival = Temp.survivalTime;
             time.reverse = Temp.reverseTime;
         } else {
-            time.survival = 0;
-            time.reverse = 60;
+            time.survival = timeSurvivalStart;
+            time.reverse = timeReverseDefault ;
         }
     }
 }

@@ -2,7 +2,7 @@ function Text() {
     this.draw = function (ctx) {
         ctx.shadowOffsetX = 5;
         ctx.shadowOffsetY = 5;
-        ctx.shadowColor="rgba(56,55,44,0.4)"
+        ctx.shadowColor="rgba(56,55,44,0.4)";
         ctx.font = "40px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
@@ -20,11 +20,13 @@ function Text() {
         ctx.fillStyle = "rgba(15,244,38,0.98)";
         ctx.textAlign = "center";
         ctx.fillText("Brick Breaker", 0.5 * canvas.width, 0.35 * canvas.height);
-        ctx.shadowColor = "#000000";
-        ctx.font = "30px Comic Sans MS";
-        ctx.fillStyle = "rgba(244,6,0,0.98)";
-        ctx.textAlign = "center";
-        ctx.fillText("High Score :", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.shadowColor = "rgba(0,0,0,0.39)";
+        ctx.font = "20px Comic Sans MS";
+        ctx.fillStyle = "rgba(0,18,244,0.98)";
+        ctx.fillText("Survive as long as you can ", 0.5 * canvas.width, 0.50 * canvas.height);
+        ctx.fillStyle = "#000000";
+        ctx.fillText("Press space to start ", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.fillText("Press ecs to pause or exit ", 0.5 * canvas.width, 0.60 * canvas.height);
     };
     this.pause = function () {
         ctx.shadowColor = "rgba(64,64,64,0.43)";
@@ -33,6 +35,9 @@ function Text() {
         ctx.textAlign = "center";
         ctx.fillText("Paused", 0.5 * canvas.width, 0.35 * canvas.height);
         ctx.shadowColor = "rgba(0,0,0,0.31)";
+        ctx.font = "20px Comic Sans MS";
+        ctx.fillText("Click left button to continue ", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.fillText("or click the another to restart ", 0.5 * canvas.width, 0.60 * canvas.height);
     };
     this.gameOver= function () {
         ctx.shadowOffsetX = 1;
@@ -44,7 +49,7 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Your last survival "+time.survival+"sec", 0.5 * canvas.width, 0.5 * canvas.height);
+        ctx.fillText("Your last survival "+time.survival+" sec", 0.5 * canvas.width, 0.5 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
