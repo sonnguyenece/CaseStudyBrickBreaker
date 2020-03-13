@@ -25,8 +25,10 @@ function Text() {
         ctx.fillStyle = "rgba(0,18,244,0.98)";
         ctx.fillText("Survive as long as you can ", 0.5 * canvas.width, 0.50 * canvas.height);
         ctx.fillStyle = "#000000";
-        ctx.fillText("Press space to start ", 0.5 * canvas.width, 0.55 * canvas.height);
-        ctx.fillText("Press ecs to pause or exit ", 0.5 * canvas.width, 0.60 * canvas.height);
+        ctx.font = "15px Comic Sans MS";
+        ctx.fillText("Press SPACE to release the ball ", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.fillText("ECS to pause or exit ", 0.5 * canvas.width, 0.60 * canvas.height);
+        ctx.fillText("UP or DOWN to move ", 0.5 * canvas.width, 0.65 * canvas.height);
     };
     this.pause = function () {
         ctx.shadowColor = "rgba(64,64,64,0.43)";

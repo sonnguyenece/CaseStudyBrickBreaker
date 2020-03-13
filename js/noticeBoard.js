@@ -130,22 +130,3 @@ function restartGame() {
     ball.x = padding.x + padding.width / 2;
     ball.y = padding.y - ball.radius;
 }
-
-
-
-// function gameOver() {
-//     if (isGameOver) {
-//         time.reverse = Temp.reverseTime;
-//         time.survival = Temp.survivalTime;
-//     // } else {
-//     //     gameStart = true;
-//     //     if (Temp.survivalTime !== timeSurvivalStart) {
-//     //         time.survival = Temp.survivalTime;
-//     //         time.reverse = Temp.reverseTime;
-//     //     } else {
-//     //         time.survival = timeSurvivalStart;
-//     //         time.reverse = timeReverseDefault ;
-//     //     }
-//     // }
-// }
-// }
