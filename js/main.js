@@ -1,7 +1,14 @@
 const PARAMETERKEYBOARD = {
     KEYLEFT: 37,
     KEYRIGHT: 39,
-    SPACE: 32
+    SPACE: 32,
+    ESC: 27
+};
+let Temp = {
+    ballSpeed: 0,
+    paddingSpeed: 0,
+    reverseTime: 0,
+    survivalTime: 0,
 };
 let canvas = document.getElementById("myCanvas");
 let ctx = canvas.getContext("2d");
@@ -9,7 +16,13 @@ let padding = new Padding();
 let ball = new Ball();
 let brickWall = new BrickWall();
 let noticeBoard = new NoticeBoard();
+let time = new Time();
+let text = new Text();
 let gameStart = false;
+let isFirstStart = true;
+let isPause = false;
+let paraIsSave = false;
+let isGameOver=false;
 
 function onKeyup(event) {
     switch (event.which) {
@@ -35,6 +48,9 @@ function onKeydown(event) {
         case PARAMETERKEYBOARD.SPACE:
             ball.start = true;
             break;
+        case PARAMETERKEYBOARD.ESC:
+            isPause = true;
+            break;
         default:
             break;
     }
@@ -44,24 +60,61 @@ document.addEventListener('keyup', onKeyup);
 document.addEventListener('keydown', onKeydown);
 
 function playGame() {
-    if (gameStart) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        padding.draw(ctx);
-        padding.move();
-        ball.draw(ctx);
-        ball.move();
-        if (brickWall.isChange) {
-            creatRandomBricks();
-            brickWall.isChange=false;
-        }
-            brickWall.draw(ctx);
-            ball.restart();
+    if (gameStart && isFirstStart) {
+        if (isPause) {
+            pauseGame();
         } else {
+            paraIsSave = false;
+            if (ball.speed === 0 || padding.speed === 0) {
+                ball.speed = Temp.ballSpeed;
+                padding.speed = Temp.paddingSpeed;
+                time.reverse = Temp.reverseTime;
+                time.survival = Temp.survivalTime;
+            }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            padding.draw(ctx);
+            padding.move();
+            ball.draw(ctx);
+            ball.move();
+            if (brickWall.isChange) {
+                creatRandomBricks();
+                brickWall.isChange = false;
+            }
+            brickWall.draw(ctx);
+            time.check();
+            ball.restart();
+            text.draw(ctx);
+        }
+    } else {
+        if(isGameOver===false){
+        noticeBoard.draw(ctx);
+        noticeBoard.action();
+        text.start(ctx);
+        }else {
             noticeBoard.draw(ctx);
             noticeBoard.action();
+            text.gameOver(ctx);
         }
-        window.requestAnimationFrame(playGame);
     }
+    window.requestAnimationFrame(playGame);
+}
 
-    playGame();
+playGame();
+
+function pauseGame() {
+    noticeBoard.draw(ctx);
+    noticeBoard.action();
+    text.pause();
+    if (paraIsSave) {
+        time.reverse = Temp.reverseTime;
+        time.survival = Temp.survivalTime;
+        ball.speed = 0;
+        padding.speed = 0;
+    } else {
+        Temp.ballSpeed = ball.speed;
+        Temp.paddingSpeed = padding.speed;
+        Temp.reverseTime = time.reverse;
+        Temp.survivalTime = time.survival;
+        paraIsSave = true;
+    }
+}

@@ -30,6 +30,20 @@ function Ball() {
         drawCir(ctx, this.x, this.y, this.radius, this.color, false);
     };
 
+    this.move = function () {
+        if (this.start) {
+            this.moveUpRight();
+            this.moveUpLeft();
+            this.moveDownLeft();
+            this.moveDownRight();
+            this.impact();
+
+        } else {
+            this.x = padding.x + padding.width / 2;
+            this.y = padding.y - this.radius;
+        }
+    };
+
     this.moveUpRight = function () {
         if (this.isUp && this.isRight) {
             this.x += this.speed;
@@ -164,6 +178,7 @@ function Ball() {
                             break;
                         default:
                             brickWall.isChange = true;
+                            time.reverse += bonusTime;
                             break;
                     }
                     this.isImpactBrick = false;
@@ -172,25 +187,12 @@ function Ball() {
         }
     };
 
-    this.move = function () {
-        if (this.start) {
-            this.moveUpRight();
-            this.moveUpLeft();
-            this.moveDownLeft();
-            this.moveDownRight();
-            this.impact();
-
-        } else {
-            this.x = padding.x + padding.width / 2;
-            this.y = padding.y - this.radius;
-        }
-    };
-
     this.restart = function () {
         if (this.y >= canvas.height + 100) {
             this.start = false;
             this.speed = ballStats.defaultSpeed;
             this.angle = ballStats.defaultAngle;
+            time.reverse-=penaltyTime;
         }
     };
 }

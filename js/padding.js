@@ -7,6 +7,7 @@ const PADDING_DEFAULT_X = 80;
 const PADDING_DEFAULT_Y = 500;
 const shadowPointX = 4;
 const shadowPointY = 5;
+
 function Padding() {
     this.color = PADDING_COLOR;
     this.height = PADDING_DEFAULT_HEIGHT;
@@ -37,7 +38,9 @@ function Padding() {
         } else if (this.x > canvas.width - this.width - this.radiusSide) {
             this.x = canvas.width - this.width - this.radiusSide;
         }
-        if (ball.y < this.y - 50) this.y = PADDING_DEFAULT_Y;
+        if (ball.y < this.y - 50) {
+            this.y = PADDING_DEFAULT_Y;
+        }
         if (ball.y >= this.y - ball.radius
             && ball.y < this.y - ball.radius + ballStats.limitedSpace) {
             if (ball.x >= this.x - this.radiusSide - ball.radius
@@ -46,7 +49,7 @@ function Padding() {
             }
         }
     };
-};
+}
 
 function drawPadding(ctx, padding, PADDING_COLOR) {
     drawArc(ctx, padding.x, padding.y + padding.radiusSide,

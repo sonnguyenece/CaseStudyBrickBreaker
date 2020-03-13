@@ -18,7 +18,6 @@ let button = {
 };
 
 function NoticeBoard() {
-
     this.draw = function (ctx) {
         drawRecAndShadow(ctx, boardStats.x, boardStats.y, boardStats.width, boardStats.height, boardStats.color);
         if (button.pressStart) {
@@ -47,9 +46,7 @@ function NoticeBoard() {
             && NoticeBoard.y >= button.y
             && NoticeBoard.y <= button.y + button.height) {
             button.pressStart = true;
-            setTimeout(function () {
-                gameStart = true;
-            }, 500);
+            setTimeout(playPauseGame, 500);
         } else {
             button.pressStart = false;
         }
@@ -59,11 +56,11 @@ function NoticeBoard() {
             && NoticeBoard.y >= button.y
             && NoticeBoard.y <= button.y + button.height) {
             button.pressRestart = true;
+            setTimeout(restartGame, 500);
         } else {
             button.pressRestart = false;
         }
-    }
-
+    };
 }
 
 /*Auxiliary Function*/
@@ -101,4 +98,38 @@ function drawButtonPress(ctx, x, y, width, height, color) {
     ctx.fillStyle = color;
     ctx.fill();
     ctx.closePath();
+}
+
+function restartGame() {
+    let incrementSeconds = setInterval(function () {
+        time.survival += 1;
+        time.reverse--;
+    }, 1000);
+    gameStart = true;
+    isFirstStart = true;
+    isGameOver=false;
+    Temp.survivalTime = 0;
+    time.survival = 0;
+    time.reverse = 60;
+    isPause = false;
+    changeBrickWall();
+    ball.x = padding.x + padding.width / 2;
+    ball.y = padding.y - ball.radius;
+}
+
+function playPauseGame() {
+    if (isPause) {
+        time.reverse = Temp.reverseTime;
+        time.survival = Temp.survivalTime;
+        isPause = false;
+    } else if (isFirstStart) {
+        gameStart = true;
+        if (Temp.survivalTime !== 0) {
+            time.survival = Temp.survivalTime;
+            time.reverse = Temp.reverseTime;
+        } else {
+            time.survival = 0;
+            time.reverse = 60;
+        }
+    }
 }
