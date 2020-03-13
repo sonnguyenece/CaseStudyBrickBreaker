@@ -101,10 +101,6 @@ function drawButtonPress(ctx, x, y, width, height, color) {
 }
 
 function restartGame() {
-    let incrementSeconds = setInterval(function () {
-        time.survival += 1;
-        time.reverse--;
-    }, 1000);
     gameStart = true;
     isFirstStart = true;
     isGameOver=false;
