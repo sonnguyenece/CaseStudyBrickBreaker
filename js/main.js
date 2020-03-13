@@ -98,8 +98,6 @@ function playGame() {
     window.requestAnimationFrame(playGame);
 }
 
-playGame();
-
 function pauseGame() {
     noticeBoard.draw(ctx);
     noticeBoard.action();
@@ -123,13 +121,13 @@ function gameOver() {
     noticeBoard.action();
     text.gameOver(ctx);
     if (timeIsSave) {
-        time.reverse = Temp.reverseTime;
+        // time.reverse = Temp.reverseTime;
         time.survival = Temp.survivalTime;
-        // ball.speed = 0;
-        // padding.speed = 0;
     } else {
-        Temp.reverseTime = time.reverse;
+        // Temp.reverseTime = time.reverse;
         Temp.survivalTime = time.survival;
         timeIsSave = true;
     }
 }
+
+playGame();
