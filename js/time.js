@@ -12,7 +12,7 @@ function Time() {
     this.check = function () {
         if (this.reverse <= 0) {
             this.reverse = 0;
-            clearInterval(incrementSeconds);
+            // clearInterval(incrementSeconds);
             gameStart = false;
             isFirstStart = false;
             isGameOver = true;

@@ -100,19 +100,6 @@ function drawButtonPress(ctx, x, y, width, height, color) {
     ctx.closePath();
 }
 
-function restartGame() {
-    gameStart = true;
-    isFirstStart = true;
-    isGameOver=false;
-    Temp.survivalTime = 0;
-    time.survival = timeSurvivalStart;
-    time.reverse = timeReverseDefault ;
-    isPause = false;
-    changeBrickWall();
-    ball.x = padding.x + padding.width / 2;
-    ball.y = padding.y - ball.radius;
-}
-
 function playPauseGame() {
     if (isPause) {
         time.reverse = Temp.reverseTime;
@@ -129,3 +116,36 @@ function playPauseGame() {
         }
     }
 }
+
+function restartGame() {
+    timeIsSave=false;
+    gameStart = true;
+    isFirstStart = true;
+    isGameOver=false;
+    Temp.survivalTime = 0;
+    time.survival = timeSurvivalStart;
+    time.reverse = timeReverseDefault ;
+    isPause = false;
+    changeBrickWall();
+    ball.x = padding.x + padding.width / 2;
+    ball.y = padding.y - ball.radius;
+}
+
+
+
+// function gameOver() {
+//     if (isGameOver) {
+//         time.reverse = Temp.reverseTime;
+//         time.survival = Temp.survivalTime;
+//     // } else {
+//     //     gameStart = true;
+//     //     if (Temp.survivalTime !== timeSurvivalStart) {
+//     //         time.survival = Temp.survivalTime;
+//     //         time.reverse = Temp.reverseTime;
+//     //     } else {
+//     //         time.survival = timeSurvivalStart;
+//     //         time.reverse = timeReverseDefault ;
+//     //     }
+//     // }
+// }
+// }
