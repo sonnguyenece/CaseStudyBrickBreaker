@@ -121,7 +121,6 @@ function gameOver() {
     noticeBoard.action();
     text.gameOver(ctx);
     if (timeIsSave) {
-        // time.reverse = Temp.reverseTime;
         time.survival = Temp.survivalTime;
     } else {
         // Temp.reverseTime = time.reverse;

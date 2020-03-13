@@ -27,8 +27,8 @@ function Text() {
         ctx.fillStyle = "#000000";
         ctx.font = "15px Comic Sans MS";
         ctx.fillText("Press SPACE to release the ball ", 0.5 * canvas.width, 0.55 * canvas.height);
-        ctx.fillText("ECS to pause or exit ", 0.5 * canvas.width, 0.60 * canvas.height);
-        ctx.fillText("UP or DOWN to move ", 0.5 * canvas.width, 0.65 * canvas.height);
+        ctx.fillText("ECS to pause exit or restart", 0.5 * canvas.width, 0.60 * canvas.height);
+        ctx.fillText("LEFT or RIGHT to move ", 0.5 * canvas.width, 0.65 * canvas.height);
     };
     this.pause = function () {
         ctx.shadowColor = "rgba(64,64,64,0.43)";
