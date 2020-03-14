@@ -94,11 +94,11 @@ function randomColorBrick() {
     let randomLockBrick = Math.floor(Math.random() * 20);
     if (randomLockBrick === 10) return brickStats.lockBrickColor;
     if (temp === 0) {
-        return brickStats.greenBrick
+        return brickStats.greenBrick;
     } else if (temp === 1) {
-        return brickStats.blueBrick
+        return brickStats.blueBrick;
     } else {
-        return "#ff0097"
+        return brickStats.redBrick;
     }
 }
 
