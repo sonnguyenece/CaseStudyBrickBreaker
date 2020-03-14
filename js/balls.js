@@ -192,7 +192,8 @@ function Ball() {
             this.start = false;
             this.speed = ballStats.defaultSpeed;
             this.angle = ballStats.defaultAngle;
-            time.reverse-=penaltyTime;
+            if(time.reverse>=penaltyTime) time.reverse-=penaltyTime;
+            else time.reverse=0;
         }
     };
 }

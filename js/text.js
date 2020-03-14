@@ -47,7 +47,7 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Game is over!!!", 0.5 * canvas.width, 0.35 * canvas.height);
+        ctx.fillText("Game over!!!", 0.5 * canvas.width, 0.35 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
