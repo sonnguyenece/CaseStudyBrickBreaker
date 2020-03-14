@@ -1,4 +1,4 @@
-const timeReverseDefault = 100;
+const timeReverseDefault = 60;
 const timeSurvivalStart=0;
 const penaltyTime = 20;
 const bonusTime = 30;
@@ -12,7 +12,6 @@ function Time() {
     this.check = function () {
         if (this.reverse <= 0) {
             this.reverse = 0;
-            // clearInterval(incrementSeconds);
             gameStart = false;
             isFirstStart = false;
             isGameOver = true;

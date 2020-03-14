@@ -120,13 +120,14 @@ function playPauseGame() {
 function restartGame() {
     timeIsSave=false;
     gameStart = true;
+    ball.start=false;
     isFirstStart = true;
     isGameOver=false;
     Temp.survivalTime = 0;
     time.survival = timeSurvivalStart;
     time.reverse = timeReverseDefault ;
     isPause = false;
-    changeBrickWall();
+    creatRandomBricks();
     ball.x = padding.x + padding.width / 2;
     ball.y = padding.y - ball.radius;
 }

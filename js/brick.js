@@ -121,9 +121,3 @@ function randomHeightBrick() {
 }
 
 creatRandomBricks();
-
-function changeBrickWall() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    creatRandomBricks();
-    brickWall.draw(ctx);
-}

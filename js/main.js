@@ -22,8 +22,8 @@ let gameStart = false;
 let isFirstStart = true;
 let isPause = false;
 let paraIsSave = false;
-let isGameOver=false;
-let timeIsSave=false;
+let isGameOver = false;
+let timeIsSave = false;
 
 function onKeyup(event) {
     switch (event.which) {
@@ -87,9 +87,9 @@ function playGame() {
             text.draw(ctx);
         }
     } else {
-        if(isGameOver){
-          gameOver();
-        }else {
+        if (isGameOver) {
+            gameOver();
+        } else {
             noticeBoard.draw(ctx);
             noticeBoard.action();
             text.start(ctx);
@@ -123,7 +123,6 @@ function gameOver() {
     if (timeIsSave) {
         time.survival = Temp.survivalTime;
     } else {
-        // Temp.reverseTime = time.reverse;
         Temp.survivalTime = time.survival;
         timeIsSave = true;
     }
