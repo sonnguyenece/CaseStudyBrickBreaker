@@ -31,6 +31,8 @@ function Text() {
         ctx.fillText("LEFT or RIGHT to move ", 0.5 * canvas.width, 0.65 * canvas.height);
     };
     this.pause = function () {
+        ctx.shadowOffsetX = 1;
+        ctx.shadowOffsetY = 1;
         ctx.shadowColor = "rgba(64,64,64,0.43)";
         ctx.font = "30px Comic Sans MS";
         ctx.fillStyle = "#290215";

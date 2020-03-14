@@ -123,7 +123,7 @@ function Ball() {
         }
     };
 
-    this.impactPadding = function (padding) {
+    this.impactPadding = function () {
         if (this.isUp === false) {
             if (padding.y <= (this.y + this.radius)
                 && padding.y >= this.y

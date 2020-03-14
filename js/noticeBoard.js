@@ -18,7 +18,7 @@ let button = {
 };
 
 function NoticeBoard() {
-    this.draw = function (ctx) {
+    this.draw = function () {
         drawRecAndShadow(ctx, boardStats.x, boardStats.y, boardStats.width, boardStats.height, boardStats.color);
         if (button.pressStart) {
             drawPlayPress(ctx);
