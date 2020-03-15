@@ -18,8 +18,6 @@ let BorderBoard = {
 function Ball() {
     this.x=ballStats.defaultX;
     this.y =ballStats.defaultY;
-    // this.x = padding.x + padding.width / 2;
-    // this.y = padding.y - this.radius;
     this.radius = ballStats.defaultRadius;
     this.color = ballStats.defaultColor;
     this.speed = ballStats.defaultSpeed;
@@ -107,19 +105,11 @@ function Ball() {
                     this.isRight = false;
                     this.isLeft = true;
                 }
-                // if ((this.y - this.radius) < BorderBoard.top) {
-                //     this.isRight = true;
-                //     this.isUp = false
-                // }
             } else {
                 if ((this.x - this.radius) <= BorderBoard.left) {
                     this.isRight = true;
                     this.isLeft = false;
                 }
-                // if ((this.y - this.radius) < BorderBoard.top) {
-                //     this.isRight = false;
-                //     this.isUp = false;
-                // }
             }
 
         }
@@ -194,7 +184,7 @@ function Ball() {
             this.start = false;
             this.speed = ballStats.defaultSpeed;
             this.angle = ballStats.defaultAngle;
-            if(time.reverse>=penaltyTime) time.reverse-=penaltyTime;
+            if(time.reverse>penaltyTime) time.reverse-=penaltyTime;
             else time.reverse=0;
         }
     };

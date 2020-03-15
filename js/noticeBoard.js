@@ -61,6 +61,34 @@ function NoticeBoard() {
             button.pressRestart = false;
         }
     };
+    this.gameOver =function () {
+            noticeBoard.draw(ctx);
+            noticeBoard.action();
+            text.gameOver(ctx);
+            if (timeIsSave) {
+                time.survival = Temp.survivalTime;
+            } else {
+                time.result = time.survival;
+                timeIsSave = true;
+            }
+        };
+    this.pauseGame = function () {
+        noticeBoard.draw(ctx);
+        noticeBoard.action();
+        text.pause();
+        if (paraIsSave) {
+            time.reverse = Temp.reverseTime;
+            time.survival = Temp.survivalTime;
+            ball.speed = 0;
+            padding.speed = 0;
+        } else {
+            Temp.ballSpeed = ball.speed;
+            Temp.paddingSpeed = padding.speed;
+            Temp.reverseTime = time.reverse;
+            Temp.survivalTime = time.survival;
+            paraIsSave = true;
+        }
+    };
 }
 
 /*Auxiliary Function*/

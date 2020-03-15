@@ -63,7 +63,7 @@ document.addEventListener('keydown', onKeydown);
 function playGame() {
     if (gameStart && isFirstStart) {
         if (isPause) {
-            pauseGame();
+            noticeBoard.pauseGame();
         } else {
             paraIsSave = false;
             if (ball.speed === 0 || padding.speed === 0) {
@@ -73,6 +73,7 @@ function playGame() {
                 time.survival = Temp.survivalTime;
             }
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            text.draw(ctx);
             padding.draw(ctx);
             padding.move();
             ball.draw(ctx);
@@ -84,11 +85,11 @@ function playGame() {
             brickWall.draw(ctx);
             time.check();
             ball.restart();
-            text.draw(ctx);
+
         }
     } else {
         if (isGameOver) {
-            gameOver();
+            noticeBoard.gameOver();
         } else {
             noticeBoard.draw(ctx);
             noticeBoard.action();
@@ -96,36 +97,6 @@ function playGame() {
         }
     }
     window.requestAnimationFrame(playGame);
-}
-
-function pauseGame() {
-    noticeBoard.draw(ctx);
-    noticeBoard.action();
-    text.pause();
-    if (paraIsSave) {
-        time.reverse = Temp.reverseTime;
-        time.survival = Temp.survivalTime;
-        ball.speed = 0;
-        padding.speed = 0;
-    } else {
-        Temp.ballSpeed = ball.speed;
-        Temp.paddingSpeed = padding.speed;
-        Temp.reverseTime = time.reverse;
-        Temp.survivalTime = time.survival;
-        paraIsSave = true;
-    }
-}
-
-function gameOver() {
-    noticeBoard.draw(ctx);
-    noticeBoard.action();
-    text.gameOver(ctx);
-    if (timeIsSave) {
-        time.survival = Temp.survivalTime;
-    } else {
-        time.result = time.survival;
-        timeIsSave = true;
-    }
 }
 
 playGame();
