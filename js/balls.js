@@ -1,7 +1,7 @@
 let ballStats = {
     defaultRadius: 10,
-    defaultX: 320,
-    defaultY: 520,
+    defaultX: 200,
+    defaultY: 500,
     defaultColor: "red",
     defaultSpeed: 2,
     defaultAngle: 70,
@@ -16,8 +16,10 @@ let BorderBoard = {
 };
 
 function Ball() {
-    this.x = ballStats.defaultX;
-    this.y = ballStats.defaultY;
+    this.x=ballStats.defaultX;
+    this.y =ballStats.defaultY;
+    // this.x = padding.x + padding.width / 2;
+    // this.y = padding.y - this.radius;
     this.radius = ballStats.defaultRadius;
     this.color = ballStats.defaultColor;
     this.speed = ballStats.defaultSpeed;

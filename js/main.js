@@ -123,7 +123,7 @@ function gameOver() {
     if (timeIsSave) {
         time.survival = Temp.survivalTime;
     } else {
-        Temp.survivalTime = time.survival;
+        time.result = time.survival;
         timeIsSave = true;
     }
 }

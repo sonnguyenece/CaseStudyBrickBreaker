@@ -1,5 +1,5 @@
 function Text() {
-    this.draw = function (ctx) {
+    this.draw = function () {
         ctx.shadowOffsetX = 5;
         ctx.shadowOffsetY = 5;
         ctx.shadowColor="rgba(56,55,44,0.4)";
@@ -27,8 +27,8 @@ function Text() {
         ctx.fillStyle = "#000000";
         ctx.font = "15px Comic Sans MS";
         ctx.fillText("Press SPACE to release the ball ", 0.5 * canvas.width, 0.55 * canvas.height);
-        ctx.fillText("ECS to pause or restart", 0.5 * canvas.width, 0.60 * canvas.height);
-        ctx.fillText("LEFT or RIGHT to move ", 0.5 * canvas.width, 0.65 * canvas.height);
+        ctx.fillText("LEFT or RIGHT to move", 0.5 * canvas.width, 0.60 * canvas.height);
+        ctx.fillText("ECS to pause or restart", 0.5 * canvas.width, 0.65 * canvas.height);
     };
     this.pause = function () {
         ctx.shadowOffsetX = 1;
@@ -49,14 +49,14 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Game over!!!", 0.5 * canvas.width, 0.35 * canvas.height);
+        ctx.fillText("GAME OVER!!!", 0.5 * canvas.width, 0.35 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Your last survival "+time.survival+" sec", 0.5 * canvas.width, 0.5 * canvas.height);
+        ctx.fillText("Your last survival "+time.result+" sec", 0.5 * canvas.width, 0.55 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Highest score: "+" sec", 0.5 * canvas.width, 0.6 * canvas.height);
+        ctx.fillText("Highest score: "+"(update later)", 0.5 * canvas.width, 0.6 * canvas.height);
     }
 }
