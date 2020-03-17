@@ -2,14 +2,14 @@ function Text() {
     this.draw = function () {
         ctx.shadowOffsetX = 5;
         ctx.shadowOffsetY = 5;
-        ctx.shadowColor="rgba(56,55,44,0.4)";
+        ctx.shadowColor = "rgba(56,55,44,0.4)";
         ctx.font = "40px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
         ctx.fillText(time.reverse, 0.5 * canvas.width, 0.7 * canvas.height);
         ctx.shadowOffsetX = 5;
         ctx.shadowOffsetY = 5;
-        ctx.shadowColor="rgba(41,2,21,0.9)"
+        ctx.shadowColor = "rgba(41,2,21,0.9)"
     };
     this.start = function () {
         ctx.shadowOffsetX = 2;
@@ -43,7 +43,7 @@ function Text() {
         ctx.fillText("Click left button to continue ", 0.5 * canvas.width, 0.55 * canvas.height);
         ctx.fillText("or click the another to restart ", 0.5 * canvas.width, 0.60 * canvas.height);
     };
-    this.gameOver= function () {
+    this.gameOver = function () {
         ctx.shadowOffsetX = 1;
         ctx.shadowOffsetY = 1;
         ctx.font = "20px Comic Sans MS";
@@ -53,10 +53,16 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Your last survival "+time.result+" sec", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.fillText("Your last survival " + time.result + " sec", 0.5 * canvas.width, 0.55 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Highest score: "+"(update later)", 0.5 * canvas.width, 0.6 * canvas.height);
+        localStorage.timeResult =time.result ;
+        if (typeof (Storage) !== "undefined") {
+            if (Number(localStorage.highScore) <= time.result) {
+                localStorage.highScore = time.result;
+            }
+        }
+        ctx.fillText("High score: " + localStorage.highScore + " sec", 0.5 * canvas.width, 0.6 * canvas.height);
     }
 }

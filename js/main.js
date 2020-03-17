@@ -25,6 +25,33 @@ let paraIsSave = false;
 let isGameOver = false;
 let timeIsSave = false;
 
+
+console.log(localStorage.display);
+
+function init() {
+    localStorage.display += "resultTime:" + localStorage.timeResult + "\n";
+    let player = null;
+    while (player === null || player === "" || player === " ") {
+        player = prompt("Please enter your nickname. I just want to know how many people play my game:) ");
+        if (player === "clearAllData") {
+            resetLocalStorage();
+            alert("clear!!!");
+            player = null;
+        }
+        if (player === "admin123") {
+                console.log(localStorage.display);
+            alert("show info in console log");
+                player = null;
+        }
+    }
+
+    if (typeof (Storage) !== "undefined") {
+        localStorage.countPlay = Number(localStorage.countPlay) + 1;
+        localStorage.display = localStorage.display + "player name :" + player +
+            " no." + localStorage.countPlay;
+    }
+}
+
 function onKeyup(event) {
     switch (event.which) {
         case PARAMETERKEYBOARD.KEYLEFT:
@@ -99,4 +126,12 @@ function playGame() {
     window.requestAnimationFrame(playGame);
 }
 
+function resetLocalStorage() {
+    localStorage.display = '';
+    localStorage.highScore = 0;
+    localStorage.timeResult = 0;
+    localStorage.countPlay = 0;
+}
+
+init();
 playGame();

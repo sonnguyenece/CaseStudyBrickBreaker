@@ -1,7 +1,7 @@
 const timeReverseDefault = 60;
 const timeSurvivalStart=0;
 const penaltyTime = 20;
-const bonusTime = 30;
+const bonusTime = 20;
 let isSaveSurTime = false;
 let incrementSeconds = setInterval(function () {
     time.survival += 1;
