@@ -25,11 +25,9 @@ let paraIsSave = false;
 let isGameOver = false;
 let timeIsSave = false;
 
-
-console.log(localStorage.display);
-
 function init() {
     localStorage.display += "resultTime:" + localStorage.timeResult + "\n";
+    console.log(localStorage.display);
     let player = null;
     while (player === null || player === "" || player === " ") {
         player = prompt("Please enter your nickname. I just want to know how many people play my game:) ");
@@ -37,11 +35,6 @@ function init() {
             resetLocalStorage();
             alert("clear!!!");
             player = null;
-        }
-        if (player === "admin123") {
-                console.log(localStorage.display);
-            alert("show info in console log");
-                player = null;
         }
     }
 
