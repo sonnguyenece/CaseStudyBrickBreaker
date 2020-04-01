@@ -28,7 +28,7 @@ function Text() {
         ctx.font = "15px Comic Sans MS";
         ctx.fillText("Press SPACE to release the ball ", 0.5 * canvas.width, 0.55 * canvas.height);
         ctx.fillText("LEFT or RIGHT to move", 0.5 * canvas.width, 0.60 * canvas.height);
-        ctx.fillText("ECS to pause or restart", 0.5 * canvas.width, 0.65 * canvas.height);
+        ctx.fillText("ESC to pause or restart", 0.5 * canvas.width, 0.65 * canvas.height);
     };
     this.pause = function () {
         ctx.shadowOffsetX = 1;
