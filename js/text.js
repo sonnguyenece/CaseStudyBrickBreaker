@@ -57,7 +57,8 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        if (localStorage.highScore == undefined)
+        // localStorage.removeItem("highScore");
+        if (localStorage.highScore === undefined)
             localStorage.highScore = 0;
         localStorage.timeResult = time.result;
         if (typeof (Storage) !== "undefined") {
