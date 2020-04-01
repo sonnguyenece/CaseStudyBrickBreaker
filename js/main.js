@@ -25,25 +25,25 @@ let paraIsSave = false;
 let isGameOver = false;
 let timeIsSave = false;
 
-function init() {
-    localStorage.display += "resultTime:" + localStorage.timeResult + "\n";
-    console.log(localStorage.display);
-    let player = null;
-    while (player === null || player === "" || player === " ") {
-        player = prompt("Please enter your nickname. I just want to know how many people play my game:) ");
-        if (player === "clearAllData") {
-            resetLocalStorage();
-            alert("clear!!!");
-            player = null;
-        }
-    }
-
-    if (typeof (Storage) !== "undefined") {
-        localStorage.countPlay = Number(localStorage.countPlay) + 1;
-        localStorage.display = localStorage.display + "player name :" + player +
-            " no." + localStorage.countPlay;
-    }
-}
+// function init() {
+//     localStorage.display += "resultTime:" + localStorage.timeResult + "\n";
+//     console.log(localStorage.display);
+//     let player = null;
+//     while (player === null || player === "" || player === " ") {
+//         player = prompt("Please enter your nickname. I just want to know how many people play my game:) ");
+//         if (player === "clearAllData") {
+//             resetLocalStorage();
+//             alert("clear!!!");
+//             player = null;
+//         }
+//     }
+//
+//     if (typeof (Storage) !== "undefined") {
+//         localStorage.countPlay = Number(localStorage.countPlay) + 1;
+//         localStorage.display = localStorage.display + "player name :" + player +
+//             " no." + localStorage.countPlay;
+//     }
+// }
 
 function onKeyup(event) {
     switch (event.which) {
@@ -126,5 +126,5 @@ function resetLocalStorage() {
     localStorage.countPlay = 0;
 }
 
-init();
+// init();
 playGame();
