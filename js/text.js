@@ -53,7 +53,7 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        ctx.fillText("Your last survival " + time.result + " sec", 0.5 * canvas.width, 0.55 * canvas.height);
+        ctx.fillText("Last survival " + time.result + " sec", 0.52 * canvas.width, 0.55 * canvas.height);
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
