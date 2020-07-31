@@ -65,6 +65,6 @@ function Text() {
                 localStorage.highScore = time.result;
             }
         }
-        ctx.fillText("High score: " + localStorage.highScore + " sec", 0.5 * canvas.width, 0.6 * canvas.height);
+        ctx.fillText("High score: " + localStorage.highScore + " sec", 0.52 * canvas.width, 0.6 * canvas.height);
     }
 }
