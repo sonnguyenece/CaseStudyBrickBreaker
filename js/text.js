@@ -23,7 +23,7 @@ function Text() {
         ctx.shadowColor = "rgba(0,0,0,0.39)";
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "rgba(0,18,244,0.98)";
-        ctx.fillText("Survive as long as you can ", 0.5 * canvas.width, 0.50 * canvas.height);
+        ctx.fillText("Survive as long as you can ", 0.52 * canvas.width, 0.50 * canvas.height);
         ctx.fillStyle = "#000000";
         ctx.font = "15px Comic Sans MS";
         ctx.fillText("Press SPACE to release the ball ", 0.5 * canvas.width, 0.55 * canvas.height);
@@ -39,7 +39,7 @@ function Text() {
         ctx.textAlign = "center";
         ctx.fillText("Paused", 0.5 * canvas.width, 0.35 * canvas.height);
         ctx.shadowColor = "rgba(0,0,0,0.31)";
-        ctx.font = "20px Comic Sans MS";
+        ctx.font = "15px Comic Sans MS";
         ctx.fillText("Click left button to continue ", 0.5 * canvas.width, 0.55 * canvas.height);
         ctx.fillText("or click the another to restart ", 0.5 * canvas.width, 0.60 * canvas.height);
     };
@@ -57,7 +57,6 @@ function Text() {
         ctx.font = "20px Comic Sans MS";
         ctx.fillStyle = "#290215";
         ctx.textAlign = "center";
-        // localStorage.removeItem("highScore");
         if (localStorage.highScore === undefined)
             localStorage.highScore = 0;
         localStorage.timeResult = time.result;
