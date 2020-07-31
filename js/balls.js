@@ -3,9 +3,10 @@ let ballStats = {
     defaultX: 200,
     defaultY: 500,
     defaultColor: "red",
-    defaultSpeed: 2,
+    defaultSpeed: 1,
     defaultAngle: 70,
-    limitedSpace: 10
+    limitedSpace: 10,
+    speedUp: 1
 };
 
 let BorderBoard = {
@@ -128,7 +129,7 @@ function Ball() {
                     } else {
                         this.angle -= 10;
                     }
-                    this.speed += 2;
+                    this.speed += ballStats.speedUp;
                 }
                 if (this.x >= padding.x + padding.width) {
                     if (this.isRight) {
@@ -137,7 +138,7 @@ function Ball() {
                         this.isRight = true;
                         this.angle -= 15;
                     }
-                    this.speed += 2;
+                    this.speed += ballStats.speedUp;
                 }
 
                 if (this.angle < 10) {
