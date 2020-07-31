@@ -106,5 +106,4 @@ function resetLocalStorage() {
     localStorage.countPlay = 0;
 }
 
-// init();
 playGame();

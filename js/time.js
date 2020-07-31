@@ -3,7 +3,7 @@ const timeSurvivalStart=0;
 const penaltyTime = 20;
 const bonusTime = 20;
 let isSaveSurTime = false;
-let incrementSeconds = setInterval(function () {
+setInterval(function () {
     time.survival += 1;
     time.reverse--;
 }, 1000);
